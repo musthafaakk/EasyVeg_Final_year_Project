@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - View Items</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .wrapper {
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #2c3e50;
+      min-height: 100vh;
+      color: white;
+    }
+
+    .sidebar .logo-header {
+      padding: 15px;
+      text-align: center;
+      background-color: #2c3e50;
+    }
+
+    .sidebar .logo-header img {
+      height: 30px;
+    }
+
+    .sidebar ul.nav {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul.nav li {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar ul.nav li a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+    }
+
+    .sidebar ul.nav li a i {
+      margin-right: 10px;
+    }
+
+    .sidebar ul.nav li a:hover {
+      background-color: #1a252f;
+    }
+
+    /* Main Panel */
+    .main-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header/Navbar */
+    .main-header {
+      background-color: #2c3e50;
+      padding: 15px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Container for table */
+    .container {
+      padding: 20px;
+      margin: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table thead {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    table th, table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      vertical-align: middle;
+    }
+
+    table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Image style */
+    .product-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9em;
+      margin-right: 5px;
+    }
+
+    .edit-btn {
+      background-color: #007bff;
+    }
+
+    .edit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+    }
+
+    .delete-btn:hover {
+      background-color: #a71d2a;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      table th, table td {
+        font-size: 0.9em;
+        padding: 8px;
+      }
+      .product-image {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo-header">
+      <!-- {% comment %} <img src="{% static 'stadmin/assets/img/kaiadmin/logo_light.svg' %}" alt="Logo"> {% endcomment %} -->
+      <img src="static/stadmin/assets/img/kaiadmin/logo_light.svg" alt="Logo">
+    </div>
+    <ul class="nav">
+      <li><a href="indexadmin"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="#"><i class="fas fa-plus"></i> Add Product</a></li>
+      <li><a href="#"><i class="fas fa-list"></i> View Items</a></li>
+      
+    
+  </div>
+
+  <!-- Main Panel -->
+  <div class="main-panel">
+    <div class="main-header">
+      <div>Admin Panel</div>
+      <div><span>Hi, Admin</span></div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="container">
+      <h2>View Items</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- {% comment %} 
+          {% for item in items %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>
+              {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="product-image">
+              {% else %}
+                <img src="{% static 'stadmin/assets/img/no-image.png' %}" alt="No image" class="product-image">
+              {% endif %}
+            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
+            <td>${{ item.price }}</td>
+            <td>{{ item.stock }}</td>
+            <td>
+              <a href="{% url 'edit_item' item.id %}" class="btn edit-btn">Edit</a>
+              <a href="{% url 'delete_item' item.id %}" class="btn delete-btn">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% endcomment %} -->
+
+          <!-- Static Example Rows -->
+          <tr>
+            <td>1</td>
+            <td><img src="static/stadmin/assets/img/sample1.jpg" alt="Pizza" class="product-image"></td>
+            <td>Pizza</td>
+            <td>Food</td>
+            <td>$12.99</td>
+            <td>50</td>
+            <td>
+              <a href="edit" class="btn edit-btn">Edit</a>
+              <a href="delete" class="btn delete-btn">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><img src="static/stadmin/assets/img/sample2.jpg" alt="Burger" class="product-image"></td>
+            <td>Burger</td>
+            <td>Food</td>
+            <td>$8.99</td>
+            <td>100</td>
+            <td>
+              <a href="edit" class="btn edit-btn">Edit</a>
+              <a href="delete" class="btn delete-btn">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><img src="static/stadmin/assets/img/sample3.jpg" alt="Soda" class="product-image"></td>
+            <td> Orange </td>
+            <td>Juice</td>
+            <td>$1.99</td>
+            <td>200</td>
+            <td>
+              <a href="edit" class="btn edit-btn">Edit</a>
+              <a href="delete" class="btn delete-btn">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

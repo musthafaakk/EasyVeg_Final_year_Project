@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <title>Employee Dashboard - Vegetable Cutting Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #e8f5e9, #c8e6c9);
+      font-family: 'Poppins', sans-serif;
+      color: #222;
+    }
+
+    /* Green Navbar */
+    .navbar {
+      background-color: #2e7d32 !important;
+    }
+
+    .navbar .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .navbar .nav-link:hover {
+      color: #ffeb3b !important;
+    }
+
+    .navbar-brand {
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    /* Dashboard Section with Background Image */
+    .dashboard-section {
+      position: relative;
+      border-radius: 15px;
+      padding: 3em 2em;
+      margin: 3em auto;
+      max-width: 1200px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+      /* Background Image */
+      background-image: url("{% static 'images/dashboard-bg.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      /* Overlay to make text readable */
+      background-color: rgba(255, 255, 255, 0.8);
+      background-blend-mode: overlay;
+      color: #222;
+    }
+
+    .heading-section h2 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: #1b5e20;
+    }
+
+    .heading-section p {
+      color: #444;
+      font-size: 1.05rem;
+    }
+
+    /* Task Cards */
+    .task-card {
+      background: rgba(241, 248, 233, 0.9); /* slightly transparent */
+      border-left: 6px solid #2e7d32;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      transition: 0.3s ease;
+    }
+
+    .task-card:hover {
+      transform: translateY(-5px);
+      background: rgba(232, 245, 233, 0.95);
+    }
+
+    .task-card h4 {
+      color: #1b5e20;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .task-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .bg-primary-veg { background-color: #388e3c; }
+    .bg-warning-veg { background-color: #f9a825; }
+    .bg-success-veg { background-color: #66bb6a; }
+
+    .btn {
+      border-radius: 25px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-success {
+      background-color: #43a047;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #388e3c;
+    }
+
+    .btn-secondary {
+      background-color: #fbc02d;
+      color: #222;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f9a825;
+      color: #000;
+    }
+
+    /* Footer */
+    .ftco-footer {
+      padding: 2em 0;
+      background: #1b5e20;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .ftco-footer h2 {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .ftco-footer a {
+      color: #ffeb3b;
+      text-decoration: none;
+    }
+
+    .ftco-footer a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Vegefoods</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="profile1" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a href="about" class="nav-link">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Section with background image -->
+  <section class="dashboard-section">
+    <div class="container text-center">
+      <div class="heading-section mb-5">
+        <h2>Welcome, <span style="color:#43a047;">Employee Name!</span></h2>
+        <p>Your assigned tasks for today are listed below.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="task-card">
+            <h4>Cut Carrots (50 KG) <span class="task-badge bg-primary-veg">High</span></h4>
+            <p><strong>Order ID:</strong> #1029</p>
+            <p><strong>Deadline:</strong> 1:00 PM</p>
+            <p>Dice 50 kg of fresh carrots into 1 cm cubes.</p>
+            <button class="btn btn-success btn-block">Mark Complete</button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="task-card">
+            <h4>Chop Onions (30 KG) <span class="task-badge bg-warning-veg">Medium</span></h4>
+            <p><strong>Order ID:</strong> #1031</p>
+            <p><strong>Deadline:</strong> End of Day</p>
+            <p>Slice 30 kg of onions into thin rings.</p>
+            <button class="btn btn-secondary btn-block">In Progress</button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="task-card" style="opacity: 0.9;">
+            <h4>Wash Cabbage (100 Heads) <span class="task-badge bg-success-veg">Done</span></h4>
+            <p><strong>Order ID:</strong> #1028</p>
+            <p><strong>Completed:</strong> 9:30 AM</p>
+            <p>Washed and cleaned 100 heads of cabbage.</p>
+            <button class="btn btn-light btn-block" disabled>✔ Completed</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="#" class="btn btn-success py-3 px-5" style="border-radius: 30px;">View All Previous Tasks</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ftco-footer">
+    <div class="container text-center">
+      <h2>Vegefoods</h2>
+      <p>Ready-to-use fresh vegetables for every kitchen.</p>
+      <p>© <script>document.write(new Date().getFullYear());</script> Vegefoods | Made with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="{% static 'js/jquery.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+</body>
+</html>

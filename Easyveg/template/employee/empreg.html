@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Employee Registration - Vegetable Cutting Project</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css'%}">
+  <link rel="stylesheet" href="{% static 'css/aos.css'%}">
+  <link rel="stylesheet" href="{% static 'css/ionicons.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css'%}">
+  <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css'%}">
+  <link rel="stylesheet" href="{% static 'css/flaticon.css'%}">
+  <link rel="stylesheet" href="{% static 'css/icomoon.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+  <style>
+    /* Navbar */
+    .navbar-custom {
+      background-color: #8BC34A !important;
+    }
+    .navbar-custom .nav-link,
+    .navbar-custom .navbar-brand {
+      color: #fff !important;
+      font-weight: 600;
+    }
+    .navbar-custom .nav-link:hover {
+      color: #333 !important;
+    }
+
+    /* Background with overlay */
+    .registration-section {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("{% static 'images/bg_10.jpg' %}") center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 0;
+    }
+
+    /* Form Card */
+    .registration-form-wrap {
+      background: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .registration-form-wrap h2 {
+      color: #4CAF50;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    .registration-form-wrap p {
+      color: #333;
+      margin-bottom: 25px;
+    }
+    .form-control {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 10px 15px;
+    }
+    .btn-success {
+      background-color: #4CAF50;
+      border: none;
+      font-weight: 600;
+      border-radius: 25px;
+      padding: 10px 25px;
+    }
+    .btn-success:hover {
+      background-color: #3e8e41;
+    }
+
+    /* Footer */
+    .ftco-footer {
+      padding: 3em 0;
+      background: #252a2f;
+      color: rgba(255,255,255,0.7);
+    }
+    .ftco-footer a {
+      color: #f8f9fa;
+      text-decoration: none;
+    }
+    .ftco-footer a:hover {
+      color: #8BC34A;
+    }
+  </style>
+</head>
+
+<body class="goto-here">
+
+  <!-- Top Bar -->
+  <div class="py-1 bg-primary">
+    <div class="container">
+      <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+        <div class="col-lg-12 d-block">
+          <div class="row d-flex">
+            <div class="col-md pr-4 d-flex topper align-items-center">
+              <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+              <span class="text">+91 9999999899</span>
+            </div>
+            <div class="col-md pr-4 d-flex topper align-items-center">
+              <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+              <span class="text">youremail@email.com</span>
+            </div>
+            <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+              <span class="text">3–5 Business Days Delivery & Free Returns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Vegefoods</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about" class="nav-link">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Registration Section -->
+  <section class="registration-section">
+    <div class="registration-form-wrap">
+      <h2 class="text-center">Employee Registration</h2>
+      <p class="text-center">Join our team for the Vegetable Cutting Project!</p>
+
+      <form action="emphome">
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" id="first_name" placeholder="John">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" placeholder="Doe">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="+91-XXXXXXXXXX">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="position">Desired Position</label>
+            <select class="form-control" id="position">
+              <option value="">Select Position</option>
+              <option value="cutter">Vegetable Cutter/Prep</option>
+              <option value="packer">Packaging Specialist</option>
+              <option value="quality">Quality Control</option>
+              <option value="supervisor">Floor Supervisor</option>
+            </select>
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="experience">Years of Relevant Experience</label>
+            <input type="number" class="form-control" id="experience" placeholder="e.g., 2" min="0">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="username">Create Username</label>
+            <input type="text" class="form-control" id="username" placeholder="johndoe123">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="password">Create Password</label>
+            <input type="password" class="form-control" id="password">
+            <small class="form-text text-muted">Must be at least 8 characters long.</small>
+          </div>
+          <div class="col-md-12 form-group">
+            <label for="address">Full Address</label>
+            <textarea class="form-control" id="address" rows="2" placeholder="Street Address, City, State, ZIP Code"></textarea>
+          </div>
+          <div class="col-md-12 form-group mt-3">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="terms">
+              <label class="form-check-label" for="terms">I agree to the <a href="#">Terms and Conditions</a> and Privacy Policy.</label>
+            </div>
+          </div>
+          <div class="col-md-12 form-group text-center mt-4">
+            <button type="submit" class="btn btn-success">Register Employee</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ftco-footer ftco-section img" style="background-image: url({% static 'images/bg_3.jpg'%});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">VeggieCut Co.</h2>
+            <p>Ready-to-use fresh vegetables for every kitchen.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4 ml-md-5">
+            <h2 class="ftco-heading-2">Quick Links</h2>
+            <ul class="list-unstyled">
+              <li><a href="#" class="py-2 d-block">About</a></li>
+              <li><a href="#" class="py-2 d-block">Contact</a></li>
+              <li><a href="#" class="py-2 d-block">Services</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Get in Touch</h2>
+            <ul>
+              <li><span class="icon icon-map-marker"></span> 123 Veggie Prep Lane, Food City, India</li>
+              <li><span class="icon icon-phone"></span> +91 9999999899</li>
+              <li><span class="icon icon-envelope"></span> youremail@email.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-12">
+          <p>© <script>document.write(new Date().getFullYear());</script> Vegefoods | Made with <i class="icon-heart color-danger"></i></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Files -->
+  <script src="{% static 'js/jquery.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/aos.js'%}"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+</body>
+</html>

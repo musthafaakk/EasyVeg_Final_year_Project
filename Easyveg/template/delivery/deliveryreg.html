@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Man Registration</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body background */
+        body {
+            background: url("{% static 'images/bg_10.jpg' %}") no-repeat center center/cover;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        /* 🌿 Green Navbar */
+        .navbar-green {
+            background-color: #2e8b57 !important; /* Sea Green */
+        }
+
+        .navbar-green .navbar-brand,
+        .navbar-green .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .navbar-green .nav-link:hover {
+            color: #d4f8d4 !important; /* Light pastel green hover */
+        }
+
+        /* Form container */
+        .container-form {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .container-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        /* Form styling */
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00862dff;
+            color: white;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #56fc09ff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌿 Green Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-green" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">Vegefoods</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about" class="nav-link">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form -->
+    <div class="container-form">
+        <h2>Delivery Man Registration</h2>
+        <form action="{% url 'deliveryhome' %}" >
+            {% csrf_token %}
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter full name" >
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter email" >
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address">
+
+            <label for="vehicle">Vehicle Type</label>
+            <select id="vehicle" name="vehicle">
+                <option value="">Select vehicle type</option>
+                <option value="bike">Bike</option>
+                <option value="car">Car</option>
+                <option value="van">Van</option>
+            </select>
+
+            <label for="available">Available Time</label>
+            <input type="text" id="available" name="available" placeholder="e.g., 9:00 AM - 5:00 PM" >
+
+            <label for="license">License Number</label>
+            <input type="text" id="license" name="license" placeholder="Enter license number" >
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" >
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
