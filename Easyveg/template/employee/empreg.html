@@ -45,11 +45,38 @@
       justify-content: center;
       align-items: center;
       padding: 50px 0;
+      position: relative; /* needed for absolute-positioned back button */
+    }
+
+    /* Back button (top-left) */
+    .back-btn {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 999;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.15s ease;
+    }
+    .back-btn:hover {
+      background: rgba(0,0,0,0.8);
+      text-decoration: none;
+      color: #fff;
+    }
+    @media (max-width: 576px) {
+      .back-btn { top: 12px; left: 12px; padding: 6px 10px; font-size: 14px; }
     }
 
     /* Form Card */
     .registration-form-wrap {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       padding: 30px;
       border-radius: 10px;
       max-width: 700px;
@@ -141,6 +168,12 @@
 
   <!-- Registration Section -->
   <section class="registration-section">
+    <!-- BACK button: top-left -->
+    <a class="back-btn" href="javascript:history.back()" aria-label="Go back">
+      <span class="ion-ios-arrow-back" aria-hidden="true"></span>
+      Back
+    </a>
+
     <div class="registration-form-wrap">
       <h2 class="text-center">Employee Registration</h2>
       <p class="text-center">Join our team for the Vegetable Cutting Project!</p>

@@ -131,6 +131,34 @@
       .ftco_navbar .navbar-toggler .oi-menu {
           color: #82ae46;
       }
+
+      /* Back button (top-left inside login section) */
+      .back-btn {
+          position: absolute;
+          top: 18px;
+          left: 18px;
+          z-index: 999;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(0,0,0,0.6);
+          color: #fff;
+          padding: 8px 12px;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: background 0.15s ease;
+      }
+      .back-btn:hover {
+          background: rgba(0,0,0,0.8);
+          text-decoration: none;
+          color: #fff;
+      }
+
+      /* Small screens tweak so it doesn't overlap nav */
+      @media (max-width: 576px) {
+        .back-btn { top: 12px; left: 12px; padding: 6px 10px; font-size: 14px; }
+      }
     </style>
   </head>
   <body class="goto-here">
@@ -177,6 +205,12 @@
 
     <!-- Login Section -->
     <section class="login-section">
+      <!-- BACK button: top-left inside login section -->
+      <a class="back-btn" href="javascript:history.back()" aria-label="Go back">
+        <span class="ion-ios-arrow-back" aria-hidden="true"></span>
+        Back
+      </a>
+
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-5">

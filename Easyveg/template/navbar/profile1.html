@@ -5,14 +5,19 @@
   <meta charset="UTF-8">
   <title>User Profile</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg, #20B2AA, #008080);
       min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center;
-      font-family: 'Poppins', sans-serif;
+      align-items: flex-start;
+      padding-top: 100px;
+    }
+    .navbar {
+      background-color: #009970 !important;
     }
     .card {
       border-radius: 20px;
@@ -36,21 +41,58 @@
       color: #333;
       margin-bottom: 8px;
     }
+    .back-btn {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      background-color: rgba(255,255,255,0.9);
+      color: #009970;
+      border-radius: 5px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background-color: #fff;
+      color: #007b5e;
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
-  <div class="card text-center p-4">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <!-- Back button (Top Left) -->
+      <a href="javascript:history.back()" class="back-btn">
+        <i class="icon-arrow-left"></i> Back
+      </a>
+
+      <!-- Brand -->
+      <a class="navbar-brand mx-auto text-white" href="/" style="font-weight: 600; font-size: 1.5rem;">
+        EasyVeg
+      </a>
+
+      <!-- Right side (empty for spacing) -->
+      <div style="width: 50px;"></div>
+    </div>
+  </nav>
+
+  <!-- Profile Card -->
+  <div class="card text-center p-4 mt-5">
     <div class="card-body">
       <img src="{% static 'images/person_4.jpg' %}" alt="Profile Picture" class="profile-pic mx-auto mb-3">
       <h3 class="card-title">{{ user.name }}</h3>
       <p class="info"><strong>Email:</strong> {{ user.email }}</p>
-<p class="info"><strong>Phone:</strong> {{ user.phone }}</p>
-<p class="info"><strong>Address:</strong> {{ user.address }}</p>
-<p class="info"><strong>District:</strong> {{ user.district }}</p>
-<p class="info"><strong>State:</strong> {{ user.state }}</p>
-<p class="info"><strong>Joined:</strong> {{ user.joined }}</p>
+      <p class="info"><strong>Phone:</strong> {{ user.phone }}</p>
+      <p class="info"><strong>Address:</strong> {{ user.address }}</p>
+      <p class="info"><strong>District:</strong> {{ user.district }}</p>
+      <p class="info"><strong>State:</strong> {{ user.state }}</p>
+      <p class="info"><strong>Joined:</strong> {{ user.joined }}</p>
 
-      <a href="{% url 'userhome' %}" class="btn btn-teal text-white mt-3" style="background-color:#20B2AA;">Back to Home</a>
+      <a href="{% url 'userhome' %}" class="btn text-white mt-3" style="background-color:#20B2AA;">Back to Home</a>
     </div>
   </div>
 </body>
