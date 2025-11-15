@@ -103,11 +103,16 @@
               <!-- Form column -->
               <div class="col-md-6 order-md-last d-flex align-items-center">
                 <div class="login-card w-100">
-                  <form action="{% url 'userhome' %}" method="post" class="bg-white p-5 contact-form" novalidate>
+                  <form  method="post" class="bg-white p-5 contact-form"  enctype="multipart/form-data" >
                     {% csrf_token %}
+
+                    {% for msg in messages %}
+                    <h3> {{msg}} </h3>
+                    {% endfor %}
+
                     <div class="form-group">
-                      <label for="id_username" class="sr-only">Name or UserID</label>
-                      <input id="id_username" name="username" type="text" class="form-control" placeholder="Name / UserID" >
+                      <label for="id_username" class="sr-only" >Name or UserID </label>
+                      <input id="id_username" name="name" type="text" class="form-control" placeholder="Name / UserID" >
                       <div class="invalid-feedback">Please enter your name or user id.</div>
                     </div>
 

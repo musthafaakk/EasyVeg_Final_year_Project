@@ -178,25 +178,29 @@
       <h2 class="text-center">Employee Registration</h2>
       <p class="text-center">Join our team for the Vegetable Cutting Project!</p>
 
-      <form action="emphome">
+      <form method="post">
+                    {% csrf_token %}
+            {% for i in meassages %}
+            {{i}}
+            {% endfor %}
         <div class="row">
           <div class="col-md-6 form-group">
             <label for="first_name">First Name</label>
-            <input type="text" class="form-control" id="first_name" placeholder="John">
+            <input type="text" class="form-control" id="first_name" placeholder="John" name="firstname">
           </div>
           <div class="col-md-6 form-group">
             <label for="last_name">Last Name</label>
-            <input type="text" class="form-control" id="last_name" placeholder="Doe">
+            <input type="text" class="form-control" id="last_name" placeholder="Doe" name="lastname">
           </div>
           <div class="col-md-6 form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" class="form-control" id="phone" placeholder="+91-XXXXXXXXXX">
+            <input type="tel" class="form-control" id="phone" placeholder="+91-XXXXXXXXXX" name="phonenumber">
           </div>
           <div class="col-md-6 form-group">
             <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
           </div>
-          <div class="col-md-6 form-group">
+          {% comment %} <div class="col-md-6 form-group">
             <label for="position">Desired Position</label>
             <select class="form-control" id="position">
               <option value="">Select Position</option>
@@ -205,23 +209,28 @@
               <option value="quality">Quality Control</option>
               <option value="supervisor">Floor Supervisor</option>
             </select>
-          </div>
+          </div> {% endcomment %}
           <div class="col-md-6 form-group">
             <label for="experience">Years of Relevant Experience</label>
-            <input type="number" class="form-control" id="experience" placeholder="e.g., 2" min="0">
+            <input type="text" class="form-control" id="experience" placeholder="e.g., 2" name="experience">
           </div>
           <div class="col-md-6 form-group">
             <label for="username">Create Username</label>
-            <input type="text" class="form-control" id="username" placeholder="johndoe123">
+            <input type="text" class="form-control" id="username" placeholder="johndoe123" name="username">
           </div>
           <div class="col-md-6 form-group">
             <label for="password">Create Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" name="password">
             <small class="form-text text-muted">Must be at least 8 characters long.</small>
+          </div>
+           <div class="col-md-6 form-group">
+            <label for="password">Confirm Password</label>
+            <input type="password" class="form-control" id="password" name="confirmpassword">
+            <small class="form-text text-muted">Re Enter tha Password.</small>
           </div>
           <div class="col-md-12 form-group">
             <label for="address">Full Address</label>
-            <textarea class="form-control" id="address" rows="2" placeholder="Street Address, City, State, ZIP Code"></textarea>
+            <textarea class="form-control" id="address" rows="2" placeholder="Street Address, City, State, ZIP Code" name="address"></textarea>
           </div>
           <div class="col-md-12 form-group mt-3">
             <div class="form-check">

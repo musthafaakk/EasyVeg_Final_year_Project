@@ -5,6 +5,17 @@ from django.contrib import messages
 def index(request):
     return render(request,"index.html")
 def userlog(request):
+    if request.method=="POST":
+        try:
+            name=request.POST.get("name")
+            email=request.POST.get("email")
+            password=request.POST.get("password")
+            log=user_registration.objects.get(name=name,email=email,password=password)
+            request.session['name']=log.name
+            request.session['id']=log.id
+            return redirect("userhome")
+        except user_registration.DoesNotExist as e :
+            messages.info(request,'invalid login')
     return render(request,"user/userlog.html")
 def userreg(request):
     if request.method=="POST":
@@ -36,6 +47,30 @@ def userhome(request):
 def emplog(request):
     return render(request,"employee/emplog.html")
 def empreg(request):
+    if request.method=="POST":
+        firstname=request.POST.get("firstname")
+        lastname=request.POST.get("lastname")
+        phonenumber=request.POST.get("phonenumber")
+        email=request.POST.get("email")
+        experience=request.POST.get("experience")
+        username=request.POST.get("username")
+        password=request.POST.get("password")
+        confirmpassword=request.POST.get("confirmpassword")
+        address=request.POST.get("address")
+        if password==confirmpassword:
+            if employee_registration.objects.filter(username=username).exists():
+                messages.info(request,'Thiis email is already in use')
+        elif  employee_registration.objects.filter(phonenumber=phonenumber).exists():
+            messages.info(request,'The number is already in use')
+        else:
+            userdata=employee_registration(firstname=firstname,lastname=lastname,
+                                           phonenumber=phonenumber,email=email,experience=experience,
+                                           username=username,password=password,address=address)
+            userdata.save()
+            return redirect("emplog")
+    else:
+        pass
+    
     return render(request,"employee/empreg.html")
 def emphome(request):  
     return render(request,"employee/emphome.html")

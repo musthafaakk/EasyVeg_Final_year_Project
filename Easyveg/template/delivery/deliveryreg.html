@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <style>
@@ -114,36 +114,42 @@
     <!-- Registration Form -->
     <div class="container-form">
         <h2>Delivery Man Registration</h2>
-        <form action="{% url 'deliveryhome' %}" >
+        <form method="POST" >
             {% csrf_token %}
+            {% for i in meassages %}
+            {{i}}
+            {% endfor %}
             <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" placeholder="Enter full name" >
+            <input type="text" id="fullname" name="fullname" placeholder="Enter full name" required >
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter email" >
+            <input type="email" id="email" name="email" placeholder="Enter email" required >
 
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+            <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
 
             <label for="address">Address</label>
-            <input type="text" id="address" name="address" placeholder="Enter your address">
-
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+{% comment %} 
             <label for="vehicle">Vehicle Type</label>
             <select id="vehicle" name="vehicle">
                 <option value="">Select vehicle type</option>
                 <option value="bike">Bike</option>
                 <option value="car">Car</option>
                 <option value="van">Van</option>
-            </select>
+            </select> {% endcomment %}
 
             <label for="available">Available Time</label>
-            <input type="text" id="available" name="available" placeholder="e.g., 9:00 AM - 5:00 PM" >
+            <input type="text" id="available" name="time" placeholder="e.g., 9:00 AM - 5:00 PM" required>
 
             <label for="license">License Number</label>
-            <input type="text" id="license" name="license" placeholder="Enter license number" >
+            <input type="text" id="license" name="license" placeholder="Enter license number" required>
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter password" >
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+             <label for="password">Confirm Password</label>
+            <input type="password" id="password" name="confirmpassword" placeholder="ReEnter password" required>
 
             <button type="submit">Register</button>
         </form>

@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from . models import *
+from django.contrib import messages
 
 # Create your views here.
 def indexadmin(request):
@@ -16,6 +18,19 @@ def viewitems(request):
 def edit(request):
     return render(request,"tempadmin/edit.html")
 def logadmin(request):
+    if request.method=="POST":
+        try:
+            email=request.POST.get("email")
+            password=request.POST.get("password")
+            log=login_admin.objects.get(email=email,password=password)
+            request.session['name']=log.name
+            request.session['id']=log.id
+            return redirect("indexadmin")
+        except login_admin.DoesNotExist as e :
+            messages.info(request,'invalid login')
+
+
+            
     return render(request,"tempadmin/logadmin.html")
 
 
