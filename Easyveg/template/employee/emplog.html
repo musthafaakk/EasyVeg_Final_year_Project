@@ -227,15 +227,19 @@
             <div class="login-form-wrap">
               <h2>Employee Login</h2>
               <p class="text-center mb-4">Access your Vegefoods Account</p>
-              <form action="emphome" class="login-form">
+              <form method="post" class="login-form">
+                 {% csrf_token %}
+            {% for i in meassages %}
+            {{i}}
+            {% endfor %}
                 <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" placeholder="Enter your username">
-                </div>
+            <label for="email">Email </label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+          </div>
                 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                  <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
                 </div>
 
                 <div class="form-group text-center mt-4">

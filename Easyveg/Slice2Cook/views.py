@@ -45,7 +45,36 @@ def userreg(request):
 def userhome(request):
     return render(request,"user/userhome.html")
 def emplog(request):
-    return render(request,"employee/emplog.html")
+    if request.method=="GET":
+      return render(request,"employee/emplog.html")
+    else:
+        try:
+            email=request.POST.get('email')
+            password=request.POST.get('password')
+            error_message = NameError
+            flag=0
+            obj= employee_registration.objects.get(email=email)
+            print(obj.email,obj.password)
+            if obj and obj.adminapprove==1 :
+                print("logged in")
+                if(password==obj.password):
+                    request.session['email']=obj.email
+                    request.session['id']=obj.id
+                    return redirect("emphome")
+                else:
+                    error_message = 'email or password INVALID !!!'
+                    return render(request,"employee/emplog.html",{'error':error_message})
+            else:
+                if obj.adminapprove==0:
+                    error_message="Admin permission required"
+
+
+        except employee_registration.DoesNotExist as e:
+            error_message = 'Email or password INVALID !!!'
+            return render(request,"employee/emplog.html",{'error':error_message})
+    return render(request,"employee/emplog.html",{'error':error_message})
+
+
 def empreg(request):
     if request.method=="POST":
         firstname=request.POST.get("firstname")
@@ -58,7 +87,7 @@ def empreg(request):
         confirmpassword=request.POST.get("confirmpassword")
         address=request.POST.get("address")
         if password==confirmpassword:
-            if employee_registration.objects.filter(username=username).exists():
+            if employee_registration.objects.filter(email=email).exists():
                 messages.info(request,'Thiis email is already in use')
         elif  employee_registration.objects.filter(phonenumber=phonenumber).exists():
             messages.info(request,'The number is already in use')
@@ -69,7 +98,7 @@ def empreg(request):
             userdata.save()
             return redirect("emplog")
     else:
-        pass
+        messages.info(request,'password not matched')
     
     return render(request,"employee/empreg.html")
 def emphome(request):  
