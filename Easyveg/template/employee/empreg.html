@@ -178,7 +178,7 @@
       <h2 class="text-center">Employee Registration</h2>
       <p class="text-center">Join our team for the Vegetable Cutting Project!</p>
 
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
             {% for i in meassages %}
             {{i}}
@@ -211,8 +211,8 @@
             </select>
           </div> {% endcomment %}
           <div class="col-md-6 form-group">
-            <label for="experience">Years of Relevant Experience</label>
-            <input type="text" class="form-control" id="experience" placeholder="e.g., 2" name="experience">
+            <label for="idproof">Upload ID Proof</label>
+        <input type="file" id="idproof" name="idproof" accept=".jpg,.jpeg,.png,.pdf" required>
           </div>
           <div class="col-md-6 form-group">
             <label for="username">Create Username</label>
@@ -233,10 +233,10 @@
             <textarea class="form-control" id="address" rows="2" placeholder="Street Address, City, State, ZIP Code" name="address"></textarea>
           </div>
           <div class="col-md-12 form-group mt-3">
-            <div class="form-check">
+            {% comment %} <div class="form-check">
               <input type="checkbox" class="form-check-input" id="terms">
               <label class="form-check-label" for="terms">I agree to the <a href="#">Terms and Conditions</a> and Privacy Policy.</label>
-            </div>
+            </div> {% endcomment %}
           </div>
           <div class="col-md-12 form-group text-center mt-4">
             <button type="submit" class="btn btn-success">Register Employee</button>

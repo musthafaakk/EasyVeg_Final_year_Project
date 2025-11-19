@@ -20,7 +20,7 @@ class employee_registration(models.Model):
         lastname=models.CharField(max_length=15)
         phonenumber=models.CharField(max_length=10)
         email=models.EmailField(max_length=70)
-        experience=models.CharField(max_length=25)
+        idproof=models.ImageField(upload_to='idproof',default=True)
         username=models.CharField(max_length=20)
         password=models.CharField(max_length=20)
         address=models.CharField(max_length=60)

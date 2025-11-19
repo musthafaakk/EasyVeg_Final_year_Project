@@ -6,7 +6,7 @@ class delivery_registration(models.Model):
     phonenumber=models.CharField(max_length=10)
     address=models.CharField(max_length=80)
     time=models.CharField( max_length=50)
-    license=models.CharField(max_length=40)
+    liscenceimg=models.ImageField(upload_to='liscencedoc',default=True)
     password=models.CharField(max_length=15)
     adminapprove=models.BooleanField(default=False)
     adminreject=models.BooleanField(default=False)

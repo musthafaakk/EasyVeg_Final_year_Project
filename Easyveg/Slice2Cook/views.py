@@ -81,7 +81,7 @@ def empreg(request):
         lastname=request.POST.get("lastname")
         phonenumber=request.POST.get("phonenumber")
         email=request.POST.get("email")
-        experience=request.POST.get("experience")
+        idproof=request.POST.get("idproof")
         username=request.POST.get("username")
         password=request.POST.get("password")
         confirmpassword=request.POST.get("confirmpassword")
@@ -93,7 +93,7 @@ def empreg(request):
             messages.info(request,'The number is already in use')
         else:
             userdata=employee_registration(firstname=firstname,lastname=lastname,
-                                           phonenumber=phonenumber,email=email,experience=experience,
+                                           phonenumber=phonenumber,email=email,idproof=idproof,
                                            username=username,password=password,address=address)
             userdata.save()
             return redirect("emplog")

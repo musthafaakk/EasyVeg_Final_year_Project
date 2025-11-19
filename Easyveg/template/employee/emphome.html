@@ -20,63 +20,29 @@
       color: #222;
     }
 
-    /* Green Navbar */
     .navbar {
       background-color: #2e7d32 !important;
     }
+    .navbar .nav-link { color: #fff !important; font-weight: 500; }
+    .navbar-brand { color: #fff !important; font-weight: 700; }
 
-    .navbar .nav-link {
-      color: #fff !important;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .navbar .nav-link:hover {
-      color: #ffeb3b !important;
-    }
-
-    .navbar-brand {
-      color: #fff !important;
-      font-weight: 700;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-    }
-
-    /* Dashboard Section with Background Image */
+    /* Dashboard Section */
     .dashboard-section {
       position: relative;
       border-radius: 15px;
       padding: 3em 2em;
       margin: 3em auto;
       max-width: 1200px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-
-      /* Background Image */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       background-image: url("{% static 'images/dashboard-bg.jpg' %}");
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-
-      /* Overlay to make text readable */
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255,255,255,0.8);
       background-blend-mode: overlay;
-      color: #222;
     }
 
-    .heading-section h2 {
-      font-weight: 700;
-      font-size: 2.2rem;
-      color: #1b5e20;
-    }
-
-    .heading-section p {
-      color: #444;
-      font-size: 1.05rem;
-    }
-
-    /* Task Cards */
     .task-card {
-      background: rgba(241, 248, 233, 0.9); /* slightly transparent */
+      background: rgba(241, 248, 233, 0.9);
       border-left: 6px solid #2e7d32;
       border-radius: 10px;
       padding: 25px;
@@ -84,81 +50,39 @@
       transition: 0.3s ease;
     }
 
-    .task-card:hover {
-      transform: translateY(-5px);
-      background: rgba(232, 245, 233, 0.95);
-    }
+    .task-card:hover { transform: translateY(-5px); }
 
-    .task-card h4 {
-      color: #1b5e20;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .task-badge {
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 25px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #fff;
-    }
+    .task-badge { padding: 5px 12px; border-radius: 25px; color: #fff; }
 
     .bg-primary-veg { background-color: #388e3c; }
     .bg-warning-veg { background-color: #f9a825; }
     .bg-success-veg { background-color: #66bb6a; }
 
-    .btn {
-      border-radius: 25px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+    .btn { border-radius: 25px; font-weight: 600; }
+
+    /* Availability Box */
+    .availability-box {
+      background: rgba(232, 245, 233, 0.9);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
     }
 
-    .btn-success {
-      background-color: #43a047;
-      border: none;
-    }
-
-    .btn-success:hover {
-      background-color: #388e3c;
-    }
-
-    .btn-secondary {
-      background-color: #fbc02d;
-      color: #222;
-      border: none;
-    }
-
-    .btn-secondary:hover {
-      background-color: #f9a825;
-      color: #000;
-    }
-
-    /* Footer */
-    .ftco-footer {
-      padding: 2em 0;
-      background: #1b5e20;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .ftco-footer h2 {
-      color: #fff;
+    #availabilityStatus {
+      font-size: 18px;
       font-weight: 600;
     }
 
-    .ftco-footer a {
-      color: #ffeb3b;
-      text-decoration: none;
-    }
-
-    .ftco-footer a:hover {
-      color: #fff;
+    /* Small active style for chosen button */
+    .availability-box .btn.active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
   </style>
 </head>
 
 <body>
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
@@ -177,49 +101,70 @@
     </div>
   </nav>
 
-  <!-- Dashboard Section with background image -->
+  <!-- Dashboard Section -->
   <section class="dashboard-section">
     <div class="container text-center">
+      
       <div class="heading-section mb-5">
         <h2>Welcome, <span style="color:#43a047;">Employee Name!</span></h2>
-        <p>Your assigned tasks for today are listed below.</p>
+        <p>Select your availability before tasks are shown.</p>
       </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="task-card">
-            <h4>Cut Carrots (50 KG) <span class="task-badge bg-primary-veg">High</span></h4>
-            <p><strong>Order ID:</strong> #1029</p>
-            <p><strong>Deadline:</strong> 1:00 PM</p>
-            <p>Dice 50 kg of fresh carrots into 1 cm cubes.</p>
-            <button class="btn btn-success btn-block">Mark Complete</button>
+      <!-- ✅ Employee Availability Buttons (NEW SECTION ADDED HERE) -->
+      <div class="availability-box mb-5">
+        <h4>Are you available for work?</h4>
+
+        <div class="btn-group mt-3" role="group" aria-label="Availability buttons">
+          <button id="availableBtn" type="button" class="btn btn-success px-4">Available</button>
+          <button id="notAvailableBtn" type="button" class="btn btn-danger px-4">Not Available</button>
+        </div>
+
+        <p id="availabilityStatus" class="mt-3" style="color:#2e7d32;">
+          Status: Available
+        </p>
+      </div>
+      <!-- END Availability Section -->
+
+      <!-- TASKS WRAPPER (will be shown/hidden based on availability) -->
+      <div id="taskSection">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="task-card">
+              <h4>Cut Carrots (50 KG) <span class="task-badge bg-primary-veg">High</span></h4>
+              <p><strong>Order ID:</strong> #1029</p>
+              <p><strong>Deadline:</strong> 1:00 PM</p>
+              <p>Dice 50 kg of fresh carrots into 1 cm cubes.</p>
+              <button class="btn btn-success btn-block">Mark Complete</button>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="task-card">
+              <h4>Chop Onions (30 KG) <span class="task-badge bg-warning-veg">Medium</span></h4>
+              <p><strong>Order ID:</strong> #1031</p>
+              <p><strong>Deadline:</strong> End of Day</p>
+              <p>Slice 30 kg of onions into thin rings.</p>
+              <button class="btn btn-secondary btn-block">In Progress</button>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="task-card" style="opacity: 0.9;">
+              <h4>Wash Cabbage (100 Heads) <span class="task-badge bg-success-veg">Done</span></h4>
+              <p><strong>Order ID:</strong> #1028</p>
+              <p><strong>Completed:</strong> 9:30 AM</p>
+              <p>Washed and cleaned 100 heads of cabbage.</p>
+              <button class="btn btn-light btn-block" disabled>✔ Completed</button>
+            </div>
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="task-card">
-            <h4>Chop Onions (30 KG) <span class="task-badge bg-warning-veg">Medium</span></h4>
-            <p><strong>Order ID:</strong> #1031</p>
-            <p><strong>Deadline:</strong> End of Day</p>
-            <p>Slice 30 kg of onions into thin rings.</p>
-            <button class="btn btn-secondary btn-block">In Progress</button>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="task-card" style="opacity: 0.9;">
-            <h4>Wash Cabbage (100 Heads) <span class="task-badge bg-success-veg">Done</span></h4>
-            <p><strong>Order ID:</strong> #1028</p>
-            <p><strong>Completed:</strong> 9:30 AM</p>
-            <p>Washed and cleaned 100 heads of cabbage.</p>
-            <button class="btn btn-light btn-block" disabled>✔ Completed</button>
-          </div>
+        <div class="text-center mt-4">
+          <a href="#" class="btn btn-success py-3 px-5" style="border-radius: 30px;">View All Previous Tasks</a>
         </div>
       </div>
+      <!-- END TASKS WRAPPER -->
 
-      <div class="text-center mt-4">
-        <a href="#" class="btn btn-success py-3 px-5" style="border-radius: 30px;">View All Previous Tasks</a>
-      </div>
     </div>
   </section>
 
@@ -232,7 +177,65 @@
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- Scripts -->
+  <script>
+    // Use DOMContentLoaded to ensure elements exist
+    document.addEventListener('DOMContentLoaded', function () {
+      const availableBtn = document.getElementById('availableBtn');
+      const notAvailableBtn = document.getElementById('notAvailableBtn');
+      const availabilityStatus = document.getElementById('availabilityStatus');
+      const taskSection = document.getElementById('taskSection');
+
+      // Key used for local persistence (so employee choice survives reload)
+      const STORAGE_KEY = 'employeeAvailable';
+
+      // Helper to apply visual active state to the chosen button
+      function setActiveButton(isAvailable) {
+        if (isAvailable) {
+          availableBtn.classList.add('active');
+          notAvailableBtn.classList.remove('active');
+        } else {
+          availableBtn.classList.remove('active');
+          notAvailableBtn.classList.add('active');
+        }
+      }
+
+      // Set current status UI and show/hide tasks
+      function setStatus(isAvailable, persist = true) {
+        availabilityStatus.textContent = isAvailable ? 'Status: Available' : 'Status: Not Available';
+        availabilityStatus.style.color = isAvailable ? '#2e7d32' : '#c62828';
+        taskSection.style.display = isAvailable ? 'block' : 'none';
+        setActiveButton(isAvailable);
+        if (persist) {
+          try {
+            localStorage.setItem(STORAGE_KEY, isAvailable ? '1' : '0');
+          } catch (e) {
+            // localStorage may fail in some contexts; ignore silently
+          }
+        }
+      }
+
+      // Event listeners
+      availableBtn.addEventListener('click', function () { setStatus(true); });
+      notAvailableBtn.addEventListener('click', function () { setStatus(false); });
+
+      // Initialize from localStorage if available, otherwise default to Available
+      let stored = null;
+      try {
+        stored = localStorage.getItem(STORAGE_KEY);
+      } catch (e) {
+        stored = null;
+      }
+
+      if (stored === '0') {
+        setStatus(false, false); // don't rewrite storage
+      } else {
+        // default to available when nothing stored or value is '1'
+        setStatus(true, false);
+      }
+    });
+  </script>
+
   <script src="{% static 'js/jquery.min.js'%}"></script>
   <script src="{% static 'js/bootstrap.min.js'%}"></script>
 </body>

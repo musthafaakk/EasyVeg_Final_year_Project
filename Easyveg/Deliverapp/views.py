@@ -49,7 +49,7 @@ def deliveryreg(request):
         phonenumber = request.POST.get("phone")
         address = request.POST.get("address")
         availabletime = request.POST.get("time")
-        licensenumber = request.POST.get("license")
+        liscenceimg=request.POST.get("liscenceimg")
         password = request.POST.get("password")
         confirmpassword = request.POST.get("confirmpassword")
 
@@ -67,7 +67,7 @@ def deliveryreg(request):
                     phonenumber=phonenumber,
                     address=address,
                     time=availabletime,
-                    license=licensenumber,
+                    liscenceimg=liscenceimg,
                     password=password
                 )
                 userdata.save()
