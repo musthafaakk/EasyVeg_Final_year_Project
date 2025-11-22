@@ -44,10 +44,6 @@ def userreg(request):
     return render(request,"user/userreg.html")
 def userhome(request):
     return render(request,"user/userhome.html")
-
-
-
-# *********************************
 def emplog(request):
     
     if request.method=="GET":
@@ -73,8 +69,7 @@ def emplog(request):
             else:
                 if obj.adminapprove==0:
                     # error_message="Admin permission required"
-                    # messages.info(request,'Admin permission required')
-                    messages.info(request,'Your Request is not accepted yet.Please wait..🙏')
+                    messages.info(request,'Admin permission required')
 
 
 
@@ -109,13 +104,11 @@ def empreg(request):
                 userdata.save()
                 messages.info(request,'Sccessfully Registered')
 
-                return redirect("empadpage")
+                return redirect("emplog")
         else:
             messages.info(request,'password not matched')
     
     return render(request,"employee/empreg.html")
-def empadpage(request):
-    return render(request,"employee/emapprove.html")
 def emphome(request):  
     return render(request,"employee/emphome.html")
 def plist(request):

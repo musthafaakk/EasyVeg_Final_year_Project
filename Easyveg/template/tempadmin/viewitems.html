@@ -13,7 +13,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f4f4f4;
+      background-color: #ffffff2b;
     }
 
     .wrapper {
@@ -84,7 +84,7 @@
     .container {
       padding: 20px;
       margin: 20px;
-      background-color: white;
+      background-color: #57494974;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
@@ -92,13 +92,14 @@
     h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #333;
+      color: #000000ff;
     }
 
     /* Table styling */
     table {
       width: 100%;
       border-collapse: collapse;
+      background-color: #801931ff; /* TABLE BACKGROUND */
     }
 
     table thead {
@@ -109,12 +110,18 @@
     table th, table td {
       padding: 12px 15px;
       text-align: left;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #6d2222ff;
       vertical-align: middle;
     }
 
-    table tr:hover {
-      background-color: #f1f1f1;
+    /* Row background */
+    table tbody tr {
+      background-color: #2f314bff; /* ROW BACKGROUND */
+    }
+
+    /* Row hover color */
+    table tbody tr:hover {
+      background-color: #1c283fff; /* HOVER COLOR */
     }
 
     /* Image style */
@@ -123,14 +130,14 @@
       height: 80px;
       object-fit: cover;
       border-radius: 8px;
-      border: 1px solid #ddd;
+      border: 1px solid #491616ff;
     }
 
     .btn {
       padding: 6px 12px;
       border: none;
       border-radius: 5px;
-      color: white;
+      color: #000000ff;
       cursor: pointer;
       text-decoration: none;
       font-size: 0.9em;
@@ -178,15 +185,11 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="logo-header">
-      <!-- {% comment %} <img src="{% static 'stadmin/assets/img/kaiadmin/logo_light.svg' %}" alt="Logo"> {% endcomment %} -->
       <img src="static/stadmin/assets/img/kaiadmin/logo_light.svg" alt="Logo">
     </div>
     <ul class="nav">
       <li><a href="indexadmin"><i class="fas fa-home"></i> BACK</a></li>
-      {% comment %} <li><a href="additems"><i class="fas fa-plus"></i> Add Product</a></li> {% endcomment %}
-      {% comment %} <li><a href="#"><i class="fas fa-list"></i> View Items</a></li> {% endcomment %}
-      
-    
+    </ul>
   </div>
 
   <!-- Main Panel -->
@@ -212,66 +215,52 @@
           </tr>
         </thead>
         <tbody>
-          <!-- {% comment %} 
-          {% for item in items %}
-          <tr>
-            <td>{{ item.id }}</td>
-            <td>
-              {% if item.image %}
-                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="product-image">
-              {% else %}
-                <img src="{% static 'stadmin/assets/img/no-image.png' %}" alt="No image" class="product-image">
-              {% endif %}
-            </td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.category }}</td>
-            <td>${{ item.price }}</td>
-            <td>{{ item.stock }}</td>
-            <td>
-              <a href="{% url 'edit_item' item.id %}" class="btn edit-btn">Edit</a>
-              <a href="{% url 'delete_item' item.id %}" class="btn delete-btn">Delete</a>
-            </td>
-          </tr>
-          {% endfor %}
-          {% endcomment %} -->
-
-          <!-- Static Example Rows -->
+         {% for v in v %}
           <tr>
             <td>1</td>
-            <td><img src="static/stadmin/assets/img/sample1.jpg" alt="Pizza" class="product-image"></td>
-            <td>Pizza</td>
-            <td>Food</td>
-            <td>$12.99</td>
-            <td>50</td>
+            <td>
+              <button class="btn btn-primary btn-sm" onclick="openViewer('{{ v.productimage.url }}')">
+                View Image
+              </button>
+            </td>
+            <td>{{v.productname}}</td>
+            <td>{{v.category}}</td>
+            <td>{{v.price}}</td>
+            <td>{{v.quantity}}</td>
             <td>
               <a href="edit" class="btn edit-btn">Edit</a>
               <a href="delete" class="btn delete-btn">Delete</a>
             </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td><img src="static/stadmin/assets/img/sample2.jpg" alt="Burger" class="product-image"></td>
-            <td>Burger</td>
-            <td>Food</td>
-            <td>$8.99</td>
-            <td>100</td>
-            <td>
-              <a href="edit" class="btn edit-btn">Edit</a>
-              <a href="delete" class="btn delete-btn">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td><img src="static/stadmin/assets/img/sample3.jpg" alt="Soda" class="product-image"></td>
-            <td> Orange </td>
-            <td>Juice</td>
-            <td>$1.99</td>
-            <td>200</td>
-            <td>
-              <a href="edit" class="btn edit-btn">Edit</a>
-              <a href="delete" class="btn delete-btn">Delete</a>
-            </td>
-          </tr>
+         {% endfor %}
+
+        <!-- Popup Viewer Modal -->
+        <div class="modal fade" id="viewerModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+              {% comment %} <div class="modal-header">
+                <h5 class="modal-title">View File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div> {% endcomment %}
+
+              <div class="modal-body" style="text-align:center;">
+                <img id="viewerImage" src="" 
+                     style="max-width:100%; max-height:70vh; border-radius:10px;">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <script>
+        function openViewer(imageUrl) {
+            document.getElementById("viewerImage").src = imageUrl;
+            var modal = new bootstrap.Modal(document.getElementById('viewerModal'));
+            modal.show();
+        }
+        </script>
+
         </tbody>
       </table>
     </div>

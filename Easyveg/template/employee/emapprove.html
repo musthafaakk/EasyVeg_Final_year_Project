@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Approval Pending - Vegefoods</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+      html,body{height:100%;margin:0}
+      body{
+        font-family: 'Poppins', sans-serif;
+        background: url('{% static "images/bg_10.jpg" %}') no-repeat center center/cover;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#fff;
+      }
+      .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55)}
+      .card-approve{
+        position:relative;
+        z-index:2;
+        max-width:520px;
+        width:100%;
+        background:rgba(255,255,255,0.95);
+        color:#333;
+        border-radius:12px;
+        padding:36px 28px;
+        box-shadow:0 12px 30px rgba(0,0,0,0.25);
+        text-align:center;
+      }
+      .card-approve h4{color:#2f6f2f;margin-bottom:8px}
+      .card-approve p{margin-bottom:22px;font-size:16px}
+      .btn-approve{
+        background:#82ae46;color:#fff;border:0;padding:10px 20px;border-radius:6px;font-weight:600
+      }
+      .btn-back{background:transparent;border:1px solid #82ae46;color:#82ae46;padding:8px 18px;border-radius:6px;margin-right:8px}
+      .small-note{font-size:13px;color:#666;margin-top:14px}
+      @media (max-width:576px){.card-approve{padding:22px 16px;margin:16px}}
+    </style>
+  </head>
+  <body>
+    <div class="overlay"></div>
+
+    <div class="card-approve">
+      <h3>Successfully Registered.</h3>
+      <h4>Admin Will Contact You shortly. Please wait for approval.</h4>
+      {% comment %} <p>Admin will contact you shortly regarding your employee registration. Please wait for approval.</p> {% endcomment %}
+
+      <div class="d-flex justify-content-center">
+        <a href="/" class="btn-back">← Back</a>
+
+        {% comment %} <form method="get" action="/" style="display:inline-block;margin:0">
+          <button type="submit" class="btn-approve">Submit</button>
+        </form> {% endcomment %}
+      </div>
+
+      {% comment %} <div class="small-note">If you have questions, contact support at <a href="mailto:youremail@email.com">youremail@email.com</a></div> {% endcomment %}
+    </div>
+
+  </body>
+</html>

@@ -95,7 +95,7 @@
                   </ul>
                 </div>
               </li> {% endcomment %}
-                                 <li class="nav-item">
+                                  <li class="nav-item">
                 <a href="indexadmin">
                   <i class="fas fa-home"></i>
                   <p>BACK</p>
@@ -720,7 +720,7 @@
         <div class="container">
           <div class="page-inner">
             <div class="page-header">
-              <h3 class="fw-bold mb-3">USER DETAILS</h3>
+              <h3 class="fw-bold mb-3">DataTables.Net</h3>
               <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                   <a href="#">
@@ -751,42 +751,47 @@
                     <div class="table-responsive">
                       <table
                         id="basic-datatables"
-                        class="display table table-striped table-hover">
+                        class="display table table-striped table-hover"
+                      >
                         <thead>
-                           <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>State</th>
-                            <th>District</th>
-                            <th>Address</th>
-                            <th>Pincode</th>
+                          <tr>
+                            <th>FirstName</th>
+                            <th>LastName</th>
                             <th>Phonenumber</th>
+                            <th>email</th>
+                            <th>Idproof</th>
+                            <th>Username</th>
+                            <th>Address</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>State</th>
-                            <th>District</th>
-                            <th>Address</th>
-                            <th>Pincode</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
                             <th>Phonenumber</th>
+                            <th>email</th>
+                            <th>Idproof</th>
+                            <th>Username</th>
+                            <th>Address</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                        {% for i in u %}
+                          {% for a in e %}
                           <tr>
-                            <td> {{i.name}} </td>
-                            <td> {{i.email}} </td>
-                            <td> {{i.state}} </td>
-                            <td> {{i.district}} </td>
-                            <td> {{i.address}} </td>
-                            <td> {{i.pincode}} </td>
-                            <td> {{i.phonenumber}} </td>
+                            <td>{{a.firstname}}</td>
+                            <td>{{a.lastname}}</td>
+                            <td>{{a.phonenumber}}</td>
+                            <td>{{a.email}}</td>
+                            <td>
+                              <button class="btn btn-primary btn-sm" onclick="openViewer('{{ a.idproof.url }}')">
+                              View Image
+                            </button>
+                          </td>
+
+                           <td>{{a.address}}</td>
                           </tr>
                           {% endfor %}
-                        
+                          
                         </tbody>
                       </table>
                     </div>
@@ -795,6 +800,33 @@
               </div>
 
               
+<!-- Popup Viewer Modal -->
+<div class="modal fade" id="viewerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">View File</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body" style="text-align:center;">
+        <img id="viewerImage" src="" 
+             style="max-width:100%; max-height:70vh; border-radius:10px;">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function openViewer(imageUrl) {
+    document.getElementById("viewerImage").src = imageUrl;
+    var modal = new bootstrap.Modal(document.getElementById('viewerModal'));
+    modal.show();
+}
+</script>
+                   
 
         {% comment %} <footer class="footer">
           <div class="container-fluid d-flex justify-content-between">
@@ -806,7 +838,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> Help </a>
+                  <a class="nav-link" href="#"> Help </a>--
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"> Licenses </a>
@@ -822,8 +854,8 @@
               <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
             </div>
           </div>
-        </footer>
-      </div> {% endcomment %}
+        </footer> {% endcomment %}
+      </div>
 
       <!-- Custom template | don't include it in your project! -->
       <div class="custom-template">

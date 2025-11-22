@@ -5,8 +5,12 @@ path('',views.index,name="index"),
 path('userlog',views.userlog,name="userlog"),
 path('userreg',views.userreg,name="userreg"),
 path('userhome',views.userhome,name="userhome"),
+
+
+# ***************************employee***********************
 path('emplog',views.emplog,name="emplog"),
 path('empreg',views.empreg,name="empreg"),
+path('empadpage',views.empadpage,name="empadpage"),
 path('emphome',views.emphome,name="emphome"),
 path('plist',views.plist,name="plist"),
 path('pdetails',views.pdetails,name="pdetails"),

@@ -178,10 +178,11 @@
       <h2 class="text-center">Employee Registration</h2>
       <p class="text-center">Join our team for the Vegetable Cutting Project!</p>
 
+      
       <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-            {% for i in meassages %}
-            {{i}}
+            {% for i in messages %}
+            <h4>{{i}}</h4>
             {% endfor %}
         <div class="row">
           <div class="col-md-6 form-group">
@@ -212,7 +213,7 @@
           </div> {% endcomment %}
           <div class="col-md-6 form-group">
             <label for="idproof">Upload ID Proof</label>
-        <input type="file" id="idproof" name="idproof" accept=".jpg,.jpeg,.png,.pdf" required>
+        <input type="file" id="idproof" name="idproof"  required>
           </div>
           <div class="col-md-6 form-group">
             <label for="username">Create Username</label>

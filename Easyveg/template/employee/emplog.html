@@ -220,6 +220,7 @@
         <span class="ion-ios-arrow-back" aria-hidden="true"></span>
         Back
       </a> {% endcomment %}
+    
 
       <div class="container">
         <div class="row justify-content-center">
@@ -229,8 +230,8 @@
               <p class="text-center mb-4">Access your Vegefoods Account</p>
               <form method="post" class="login-form">
                  {% csrf_token %}
-            {% for i in meassages %}
-            {{i}}
+            {% for i in messages %}
+            <p style="color: green;">{{ i }}</p>
             {% endfor %}
                 <div class="form-group">
             <label for="email">Email </label>
