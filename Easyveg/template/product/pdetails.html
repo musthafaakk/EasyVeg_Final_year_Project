@@ -112,6 +112,8 @@
           style="background: linear-gradient(135deg, #20B2AA, #008080); 
                   border-radius: 20px; 
                   min-height: 500px;">
+<form method="post">
+  {% csrf_token %}
 
         <!-- Overlay -->
         <div class="overlay position-absolute w-100 h-100" 
@@ -123,7 +125,7 @@
           <div id="productCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
             <div class="carousel-inner text-center">
               <div class="carousel-item active">
-                <img src="{% static 'images/product-1.jpg' %}" 
+                <img src="{{ product.productimage.url }}" 
                     class="img-fluid rounded mb-3" 
                     style="max-height: 250px; object-fit: cover;" 
                     alt="Product image">
@@ -131,33 +133,66 @@
             </div>
           </div>
 
-          <h3 class="text-white text-center">Bell Pepper</h3>
-          <p class="text-white-50 text-center">Juicy, tangy & ideal for all Indian curries</p>
-          <p class="text-center">500 g</p>
-          <h4 class="text-center text-warning">₹16 <del class="text-light">₹20</del></h4>
+          <h3 class="text-white text-center">{{ product.productname }}</h3>
+          <p class="text-white-50 text-center">{{ product.description }}</p>
+          <p class="text-center">{{ product.quantity }}g</p>
+          <h4 class="text-center text-warning">₹{{ product.price }} <del class="text-light"></del></h4>
 
-          <!-- Quantity Selector -->
-          <div class="d-flex justify-content-center align-items-center mt-2">
-            <button class="btn btn-sm btn-outline-light mx-1" id="decrease">−</button>
-            <span class="text-white mx-2" id="quantity">1</span>
-            <button class="btn btn-sm btn-outline-light mx-1" id="increase">+</button>
-          </div>
+    
+<!-- Centered Input Fields -->
+<div class="d-flex justify-content-center mt-3">
+  <div class="row g-2 text-center" style="max-width: 420px;">
 
-          <div class="mt-4">
-            <a href="#" class="btn btn-light btn-lg w-100 text-success fw-bold">Book Now</a>
-          </div>
+    <!-- Quantity -->
+    <div class="col-4">
+      <input type="number"
+        id="quantity_input"
+        name="quantity"
+        class="form-control form-control-sm text-center rounded-pill shadow-sm"
+        placeholder="Qty"
+        value="1"
+        min="1"
+        required>
+    </div>
+
+    <!-- Delivery Date -->
+    <div class="col-4">
+      <input type="date"
+        id="delivery_date_input"
+        name="delivery_date"
+        class="form-control form-control-sm text-center rounded-pill shadow-sm" required>
+    </div>
+
+    <!-- Amount -->
+    <div class="col-4">
+      <input type="text"
+        id="amount"
+        
+        name="suggestions"
+        class="form-control form-control-sm text-center rounded-pill shadow-sm"
+        placeholder="Suggestions" required >
+    </div>
+    <div class="col-4">
+      <input type="text" hidden
+        id="amount"
+        value="{{ product.price }}"
+        name="amount"
+        class="form-control form-control-sm text-center rounded-pill shadow-sm"
+        placeholder="₹ Amount">
+    </div>
+
+  </div>
+</div>
+
+      <button type="submit" class="btn btn-light btn-lg w-100 text-success fw-bold">
+  Book Now
+</button>
 
         </div>
       </div>
+          </form>
 
-      <!-- Description -->
-      <div class="card mt-5 shadow-sm p-4">
-        <h5>Description</h5>
-        <p class="mt-2 mb-0">
-          Fresh green Bell Peppers packed with flavor — perfect for stir-fries, curries, and salads.
-          Rich in vitamins A and C, these peppers add crunch and a sweet bite to any dish.
-        </p>
-      </div>
+
 
     </section>
 

@@ -207,35 +207,39 @@
               <h3 class="card-title mb-0">Edit Product</h3>
             </div>
             <div class="card-body">
-              <form action="#"  enctype="multipart/form-data">
-                
+              <form  method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="form-group mb-3">
                   <label for="productName">Product Name</label>
-                  <input type="text" class="form-control" id="productName" name="productName" placeholder="Enter product name"  />
+                  <input type="text" value="{{ pro.productname }}" class="form-control" id="productname" name="productname" placeholder="Enter product name"  />
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="productPrice">Price</label>
-                  <input type="number" class="form-control" id="productPrice" name="productPrice" placeholder="Enter product price"  />
+                  <input type="number" value="{{ pro.price }}" class="form-control" id="productPrice" name="price" placeholder="Enter product price"  />
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="productDescription">Description</label>
-                  <textarea class="form-control" id="productDescription" name="productDescription" rows="4" placeholder="Enter product description"></textarea>
+                  <textarea class="form-control" id="productDescription" name="description" rows="4" placeholder="Enter product description">{{ pro.description }}</textarea>
                 </div>
+          <label for="stock">Stock Quantity</label>
+          <input type="number" id="stock" name="quantity" placeholder="Enter stock quantity"  >
+
+
 
                 <div class="form-group mb-3">
                   <label for="productCategory">Category</label>
-                  <select class="form-control" id="productCategory" name="productCategory" required>
+                  <select class="form-control" id="productCategory" name="category" >
                     <option value="fruit">Fruit</option>
                     <option value="vegetable">Vegetable</option>
-                    <option value="herb">Herb</option>
+                    {% comment %} <option value="herb">Herb</option> {% endcomment %}
                   </select>
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="productImage">Product Image</label>
-                  <input type="file" class="form-control" id="productImage" name="productImage" />
+                  <input type="file" class="form-control" id="productImage" value="{{ pro.productimage }}" name="productimage" />
                 </div>
 
                 <button type="submit" class="btn btn-success">Save Changes</button>

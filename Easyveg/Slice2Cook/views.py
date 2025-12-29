@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from . models import *
 from django.contrib import messages
+from vegadmin.models import *
 # Create your views here.
 def index(request):
     return render(request,"index.html")
@@ -119,9 +120,22 @@ def empadpage(request):
 def emphome(request):  
     return render(request,"employee/emphome.html")
 def plist(request):
-    return render(request,"product/plist.html")
-def pdetails(request):
-    return render(request,"product/pdetails.html")
+    products = add_items.objects.all()
+    return render(request,"product/plist.html",{"products":products})
+def pdetails(request,eid):
+    product = add_items.objects.get(id=eid)
+    if request.method == "POST":
+        quantity = request.POST.get("quantity")
+        delivery_date = request.POST.get("delivery_date")
+        suggestions = request.POST.get("suggestions")
+        amount = request.POST.get("amount")
+        user=request.session['id']
+        product=product.id
+        sa=user_booking(user_id=user,product_id=product,quantity=quantity,delivery_date=delivery_date,suggestions=suggestions,amount=amount)
+        sa.save()
+        return redirect("userhome")
+        # Process the booking details here
+    return render(request,"product/pdetails.html",{"product":product})
 def bdetails(request):
     return render(request,"navbar/bdetails.html")
 def profile1(request):

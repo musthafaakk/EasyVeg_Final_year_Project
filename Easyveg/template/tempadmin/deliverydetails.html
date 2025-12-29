@@ -760,6 +760,7 @@
                             <th>Address</th>
                             <th>Time</th>
                             <th>LiscenceImage</th>
+                             <th>Action</th> 
                           </tr>
                         </thead>
                         <tfoot>
@@ -770,6 +771,7 @@
                             <th>Address</th>
                             <th>Time</th>
                             <th>LiscenceImage</th>
+                             <th>Action</th> 
                           </tr>
                         </tfoot>
                         <tbody>
@@ -785,6 +787,27 @@
                               View Image
                             </button>
                           </td>
+                           <td>
+    {% comment %} <button class="btn btn-success btn-sm"
+            onclick="approveUser('{{ a.id }}')">
+      Approve
+    </button>
+
+    <button class="btn btn-danger btn-sm"
+            onclick="rejectUser('{{ a.id }}')">
+      Reject
+    </button> {% endcomment %}
+    {% if d.adminapprove %}
+    <a class="btn btn-success btn-sm" >Approved</a>
+    {% elif d.adminreject %}
+    <a class="btn btn-success btn-sm" >Rejected</a>
+    {% else %}
+    <a href="{% url 'dapprove' d.id %}" class="btn btn-success btn-sm">Approve</a>
+    <a href="{% url 'dreject' d.id %}" class="btn btn-danger btn-sm">Reject</a>
+    {% endif %}
+
+    
+  </td>
                           </tr>
                           {% endfor %}
                         </tbody>
@@ -817,6 +840,24 @@
                     var modal = new bootstrap.Modal(document.getElementById('viewerModal'));
                     modal.show();
                 }
+
+                <script>
+function approveUser(id) {
+  if (confirm("Approve this user?")) {
+    console.log("Approved:", id);
+    // Django view connect later
+  }
+}
+
+function rejectUser(id) {
+  if (confirm("Reject this user?")) {
+    console.log("Rejected:", id);
+    // Django view connect later
+  }
+}
+</script>
+
+
                 </script>
 
              

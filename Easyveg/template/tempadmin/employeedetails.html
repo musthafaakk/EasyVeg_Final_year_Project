@@ -762,6 +762,7 @@
                             <th>Idproof</th>
                             <th>Username</th>
                             <th>Address</th>
+                             <th>Action</th> 
                           </tr>
                         </thead>
                         <tfoot>
@@ -773,12 +774,13 @@
                             <th>Idproof</th>
                             <th>Username</th>
                             <th>Address</th>
+                             <th>Action</th> 
                           </tr>
                         </tfoot>
                         <tbody>
                           {% for a in e %}
                           <tr>
-                            <td>{{a.firstname}}</td>
+                            <td style="font-color: white;">{{a.firstname}}</td>
                             <td>{{a.lastname}}</td>
                             <td>{{a.phonenumber}}</td>
                             <td>{{a.email}}</td>
@@ -788,7 +790,39 @@
                             </button>
                           </td>
 
+                           <td>{{a.username}}</td>
                            <td>{{a.address}}</td>
+                            {% comment %} <td> {% endcomment %}
+    {% comment %} <button class="btn btn-success btn-sm"
+            onclick="approveUser('{{ a.id }}')">
+      Approve
+    </button>
+
+    <button class="btn btn-danger btn-sm"
+            onclick="rejectUser('{{ a.id }}')">
+      Reject
+    </button> {% endcomment %}
+    {% comment %} {% if a.adminapprove == True %}
+    <a class="btn btn-success btn-sm" href="{% url 'eapprove' a.id %}">Approve</a>
+    {% elif a.adminreject == False %}
+    <a class="btn btn-danger btn-sm" href="{% url 'ereject' a.id %}">Reject</a>
+    {% else %}
+    <a class="btn btn-warning btn-sm" href="{% url 'eapprove' a.id %}">Approve</a>
+    <a class="btn btn-warning btn-sm" href="{% url 'ereject' a.id %}">Reject</a>
+    {% endif %}
+  </td> {% endcomment %}
+  <td>
+{% if a.adminapprove %}
+    <a class="btn btn-success btn-sm" >Approved</a>
+    {% elif a.adminreject %}
+    <a class="btn btn-success btn-sm" >Rejected</a>
+{% else %}
+    <a class="btn btn-success btn-sm" href="{% url 'eapprove' a.id %}">Approve</a>
+
+    <a class="btn btn-danger btn-sm" href="{% url 'ereject' a.id %}">Reject</a>
+
+{% endif %}
+  </td>
                           </tr>
                           {% endfor %}
                           
@@ -825,6 +859,23 @@ function openViewer(imageUrl) {
     var modal = new bootstrap.Modal(document.getElementById('viewerModal'));
     modal.show();
 }
+
+<script>
+function approveUser(id) {
+  if (confirm("Approve this user?")) {
+    console.log("Approved:", id);
+    // Django view connect later
+  }
+}
+
+function rejectUser(id) {
+  if (confirm("Reject this user?")) {
+    console.log("Rejected:", id);
+    // Django view connect later
+  }
+}
+</script>
+
 </script>
                    
 

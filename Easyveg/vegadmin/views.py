@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render,redirect
 from . models import *
 from django.contrib import messages
@@ -52,8 +53,50 @@ def logadmin(request):
         except login_admin.DoesNotExist as e :
             messages.info(request,'invalid login')
 
-
             
     return render(request,"tempadmin/logadmin.html")
+def eapprove(request,aid):
+    pro=employee_registration.objects.get(id=aid)
+    pro.adminapprove=True
+    pro.save()
+    return redirect("employeedetails")
+def ereject(request,aid):
+    pro=employee_registration.objects.get(id=aid)
+    pro.adminreject=True
+    pro.save()
+    return redirect("employeedetails")
+def dapprove(request,did):
+    pro=delivery_registration.objects.get(id=did)
+    pro.adminapprove=True
+    pro.save()
+    return redirect("deliverydetails")
+def dreject(request,did):
+    pro=delivery_registration.objects.get(id=did)
+    pro.adminreject=True
+    pro.save()
+    return redirect("deliverydetails")
 
+def dpedit(request, aid):
+    pro = add_items.objects.get(id=aid)
+    if request.method == "POST":
+        if 'image' in request.FILES:
+            if pro.productimage and os.path.isfile(pro.productimage.path):
+                os.remove(pro.productimage.path)
+            pro.productimage = request.FILES.get("productimage")
 
+        pro.productname = request.POST.get("productname")
+        pro.category = request.POST.get("category")
+        pro.price = request.POST.get("price")
+        pro.quantity = request.POST.get("quantity")
+        pro.description = request.POST.get("description")
+        pro.save()
+
+        
+        return redirect("viewitems")
+
+    return render(request, "tempadmin/edit.html", {'pro': pro})
+
+def fdel(request, aid):
+    pro = add_items.objects.get(id=aid)
+    pro.delete()
+    return redirect("viewitems")
