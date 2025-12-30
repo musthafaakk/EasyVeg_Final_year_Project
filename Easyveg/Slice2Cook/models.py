@@ -2,6 +2,7 @@ from django.db import models
 from vegadmin.models import*
 from django.utils import timezone
 
+
 class user_registration(models.Model):
     name=models.CharField(max_length=30)
     email=models.EmailField(max_length=60)
@@ -11,6 +12,7 @@ class user_registration(models.Model):
     address=models.CharField(max_length=50)
     pincode=models.CharField(max_length=6)
     phonenumber=models.CharField(max_length=10)
+    joined=models.DateTimeField(default=timezone.now)
 
 
     def __str__(self):

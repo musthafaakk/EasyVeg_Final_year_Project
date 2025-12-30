@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render,redirect
 from . models import *
 from django.contrib import messages
@@ -8,13 +9,13 @@ def index(request):
 def userlog(request):
     if request.method=="POST":
         try:
-            name=request.POST.get("name")
+            # name=request.POST.get("name")
             email=request.POST.get("email")
             password=request.POST.get("password")
-            log=user_registration.objects.get(name=name,email=email,password=password)
-            request.session['name']=log.name
+            log=user_registration.objects.get(email=email,password=password)
+            # request.session['name']=log.name
             request.session['id']=log.id
-            return redirect("userhome")
+            return redirect("plist")
         except user_registration.DoesNotExist as e :
             messages.info(request,'invalid login')
     return render(request,"user/userlog.html")
@@ -133,20 +134,33 @@ def pdetails(request,eid):
         product=product.id
         sa=user_booking(user_id=user,product_id=product,quantity=quantity,delivery_date=delivery_date,suggestions=suggestions,amount=amount)
         sa.save()
-        return redirect("userhome")
+        return redirect("plist")
         # Process the booking details here
     return render(request,"product/pdetails.html",{"product":product})
 def bdetails(request):
     return render(request,"navbar/bdetails.html")
 def profile1(request):
-    return render(request,"navbar/profile1.html")
+     pro = user_registration.objects.get(id=request.session['id'])
+     return render(request,"navbar/profile1.html",{"pro":pro})
+
 def cartview(request):
     return render(request,"navbar/cartview.html")
+def editprofile(request):
+    
+    return render(request,"navbar/editprofile.html")
+def deditprof(request,pid):
+    user=user_registration.objects.get(id=pid)
+    if request.method=="POST":
+        user.name=request.POST.get("name")
+        user.email=request.POST.get("email")
+        user.phonenumber=request.POST.get("phone")
+        user.state=request.POST.get("state")
+        user.district=request.POST.get("district")
+        user.address=request.POST.get("address")
+        user.pincode=request.POST.get("pincode")
+        user.save()
+        # return redirect("profile1")
+    return render(request,"navbar/editprofile.html",{"user":user})
 def about(request):
     return render(request,"navbar/about.html")
-
-
-                                                     
-
-
 

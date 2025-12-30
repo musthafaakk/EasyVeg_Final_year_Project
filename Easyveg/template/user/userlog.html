@@ -110,11 +110,11 @@
                     <h3> {{msg}} </h3>
                     {% endfor %}
 
-                    <div class="form-group">
+                    {% comment %} <div class="form-group">
                       <label for="id_username" class="sr-only" >Name or UserID </label>
                       <input id="id_username" name="name" type="text" class="form-control" placeholder="Name / UserID" >
                       <div class="invalid-feedback">Please enter your name or user id.</div>
-                    </div>
+                    </div> {% endcomment %}
 
                     <div class="form-group">
                       <label for="id_email" class="sr-only">Email</label>

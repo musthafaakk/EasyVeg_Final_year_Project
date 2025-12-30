@@ -72,7 +72,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand mx-auto text-white" href="/" style="font-weight: 600; font-size: 1.5rem;">
-        EasyVeg
+        PROFILE
       </a>
 
       <!-- Right side (empty for spacing) -->
@@ -84,15 +84,17 @@
   <div class="card text-center p-4 mt-5">
     <div class="card-body">
       <img src="{% static 'images/person_4.jpg' %}" alt="Profile Picture" class="profile-pic mx-auto mb-3">
-      <h3 class="card-title">{{ user.name }}</h3>
-      <p class="info"><strong>Email:</strong> {{ user.email }}</p>
-      <p class="info"><strong>Phone:</strong> {{ user.phone }}</p>
-      <p class="info"><strong>Address:</strong> {{ user.address }}</p>
-      <p class="info"><strong>District:</strong> {{ user.district }}</p>
-      <p class="info"><strong>State:</strong> {{ user.state }}</p>
-      <p class="info"><strong>Joined:</strong> {{ user.joined }}</p>
+      <h3 class="card-title">{{ pro.name }}</h3>
+      <p class="info"><strong>Name:{{ pro.name }}</strong> </p>
+      <p class="info"><strong>Email:{{ pro.email }}</strong> </p>
+      <p class="info"><strong>Phone:{{ pro.phonenumber }}</strong> </p>
+      <p class="info"><strong>Address:{{ pro.address }}</strong> </p>
+      <p class="info"><strong>Pincode:{{ pro.pincode }}</strong> </p> 
+      <p class="info"><strong>District: {{ pro.district }}</strong></p>
+      <p class="info"><strong>State:{{ pro.state }}</strong> </p>
+      <p class="info"><strong>Joined:{{ pro.joined }}</strong> </p>
 
-      <a href="{% url 'userhome' %}" class="btn text-white mt-3" style="background-color:#20B2AA;">Back to Home</a>
+      <a href="{% url 'deditprof' pro.id  %}" class="btn text-white mt-3" style="background-color:#20B2AA;">edit profile</a>
     </div>
   </div>
 </body>

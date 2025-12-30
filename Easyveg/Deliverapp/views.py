@@ -86,7 +86,7 @@ def deliveryhome(request):
     return render(request,'delivery/deliveryhome.html')
 def about(request):
     return render(request,'navbar/about.html')
-def profile1(request):
-    return render(request,'navbar/profile1.html')
+def profile2(request):
+    return render(request,'navbar/profile2.html')
 
 # Create your views here.

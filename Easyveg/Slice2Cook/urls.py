@@ -18,5 +18,7 @@ path('bdetails',views.bdetails,name="bdetails"),
 path('profile1',views.profile1,name="profile1"),
 path('cartview',views.cartview,name="cartview"),
 path('about',views.about,name="about"),
+path('editprofile',views.editprofile,name="editprofile"),
+path('deditprof<int:pid>',views.deditprof,name="deditprof")
 
 ]
