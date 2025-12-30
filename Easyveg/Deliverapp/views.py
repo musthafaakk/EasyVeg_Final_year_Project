@@ -87,6 +87,19 @@ def deliveryhome(request):
 def about(request):
     return render(request,'navbar/about.html')
 def profile2(request):
-    return render(request,'navbar/profile2.html')
-
-# Create your views here.
+    pro = delivery_registration.objects.get(id=request.session['id'])
+    return render(request,'delivery/profile2.html', {'delivery': pro})
+def editprofile2(request):
+    return render(request,'delivery/editprofile2.html')
+def deditprof2(request,dpid):
+    deli=delivery_registration.objects.get(id=dpid)
+    if request.method == "POST":
+        deli.fullname = request.POST.get("fullname")
+        deli.email = request.POST.get("email")
+        deli.phonenumber = request.POST.get("phone")
+        deli.address = request.POST.get("address")
+        deli.time = request.POST.get("time")
+        deli.save()
+        return redirect("profile2")
+    return render(request, 'delivery/editprofile2.html', {'deli': deli})
+        
